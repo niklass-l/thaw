@@ -29,7 +29,7 @@ impl<T: Send + Sync> ComponentRef<T> {
     }
 }
 
-impl<T> ComponentRef<T> {
+impl<T: Send + Sync> ComponentRef<T> {
     pub fn get(&self) -> Option<T>
     where
         T: Clone,

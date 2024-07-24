@@ -11,7 +11,7 @@ pub trait SignalWatch {
     fn watch(&self, f: impl Fn(&Self::Value) + 'static) -> Box<dyn FnOnce()>;
 }
 
-impl<T: 'static> SignalWatch for RwSignal<T> {
+impl<T: Send + Sync + 'static> SignalWatch for RwSignal<T> {
     type Value = T;
 
     /// Listens for RwSignal changes and is not executed immediately
